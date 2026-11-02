@@ -23,5 +23,20 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder.
 
 ## Hosting
 
-Upload `index.html`, `style.css` and `script.js` to the `public_html` folder of the hosting account
-(or connect this GitHub repo through the host's Git deployment), then point davedrop.online at it.
+Hosted on **Vercel** as a static site (no build step, no config needed).
+
+1. In Vercel: **Add New → Project**, import `johnbrindi/Dave-Drop`.
+2. Framework preset: **Other**. Leave the build command and output directory empty.
+3. Deploy. Every push to `main` redeploys automatically.
+
+### Custom domain (davedrop.online)
+
+In the Vercel project: **Settings → Domains → Add** `davedrop.online` (and `www.davedrop.online`).
+Then, at the domain registrar's DNS settings, add the records Vercel shows, typically:
+
+| Type  | Name | Value                  |
+|-------|------|------------------------|
+| A     | @    | 76.76.21.21            |
+| CNAME | www  | cname.vercel-dns.com   |
+
+Always use the exact values Vercel displays for your project. HTTPS is set up automatically.
