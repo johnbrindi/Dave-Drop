@@ -8,7 +8,6 @@ const CONFIG = {
   telegramUsername: "davedrop",
   // Shown on the page
   phoneDisplay: "+237 670 178 126",
-  location: "Cameroon",
   hoursText: "Mon–Sat · 8:00–20:00 WAT",
   // Opening hours used for the "Online now" badge (24h clock, West Africa Time, UTC+1)
   openHour: 8,
@@ -28,7 +27,6 @@ const CONFIG = {
   $("wa-handle").textContent = CONFIG.phoneDisplay;
   $("tg-handle").textContent = `@${CONFIG.telegramUsername}`;
   $("info-phone").textContent = CONFIG.phoneDisplay;
-  $("info-location").textContent = CONFIG.location;
   $("info-hours").textContent = CONFIG.hoursText;
   $("year").textContent = new Date().getFullYear();
 
