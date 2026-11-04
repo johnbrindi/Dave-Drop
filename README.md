@@ -40,3 +40,20 @@ Then, at the domain registrar's DNS settings, add the records Vercel shows, typi
 | CNAME | www  | cname.vercel-dns.com   |
 
 Always use the exact values Vercel displays for your project. HTTPS is set up automatically.
+
+## Live chat
+
+- Visitors chat through the bubble on the site (`chat.js`, `chat.css`, `api/chat.js`).
+- Admin app: **https://davedrop.online/admin** (password only, installable, push notifications).
+  Code in `admin/` and `api/admin.js`. Messages are stored in Upstash Redis (Vercel Marketplace).
+
+Environment variables (set in Vercel → Settings → Environment Variables):
+
+| Name | What it is |
+|------|------------|
+| `ADMIN_PASSWORD` | Admin login password. Changing it logs out every device. |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Added automatically by the Upstash integration |
+| `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | Push notification keys |
+| `SESSION_SECRET` | Signs admin login sessions |
+
+After changing an environment variable, redeploy for it to take effect.
