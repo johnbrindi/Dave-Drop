@@ -13,8 +13,8 @@ Contact page for **davedrop.online**. Plain HTML, CSS and JavaScript. No build s
 Open `script.js` and edit the `CONFIG` object at the top:
 
 ```js
-whatsappNumber: "237670178126",   // digits only, with country code
-telegramUsername: "davedrop",      // without the @
+whatsappNumber: "447343053226",   // digits only, with country code
+telegramUsername: "Drop420s",      // without the @
 ```
 
 ## Run locally

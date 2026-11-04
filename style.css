@@ -12,6 +12,7 @@
   --field: #f2f5f8;
   --wa: #25d366;
   --tg: #2aabee;
+  --sg: #3a76f0;
   --error: #c0362c;
 
   --display: "Unbounded", "Arial Black", system-ui, sans-serif;
@@ -161,9 +162,9 @@ h1 span {
 /* Channel buttons */
 .channels {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  max-width: 640px;
+  max-width: 860px;
 }
 .channel {
   display: flex;
@@ -190,6 +191,7 @@ h1 span {
 .ch-icon svg { width: 26px; height: 26px; fill: var(--paper); }
 .channel-wa .ch-icon { background: var(--wa); }
 .channel-tg .ch-icon { background: var(--tg); }
+.channel-sg .ch-icon { background: var(--sg); }
 
 .ch-text { display: flex; flex-direction: column; min-width: 0; }
 .ch-name { font-weight: 700; font-size: 1.05rem; }
@@ -379,7 +381,7 @@ h1 span {
 @media (min-width: 1400px) {
   .wrap { max-width: 1240px; }
   .board { grid-template-columns: 340px minmax(0, 1fr); }
-  .channels { max-width: 720px; }
+  .channels { max-width: 940px; }
 }
 
 /* Small laptops */
@@ -403,10 +405,14 @@ h1 span {
   .slash-b { width: 70vw; height: 90px; }
 }
 
+/* Narrow tablets: stack the channel buttons */
+@media (max-width: 720px) {
+  .channels { grid-template-columns: minmax(0, 1fr); max-width: 480px; }
+}
+
 /* Phones */
 @media (max-width: 560px) {
   body { font-size: 15px; }
-  .channels { grid-template-columns: minmax(0, 1fr); }
   .lede { font-size: 1rem; margin: 16px 0 24px; }
   .info { margin: 0 8px -24px; grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px 18px; }
   .form { padding: 48px 18px 22px; border-radius: 20px; }

@@ -3,11 +3,13 @@
    ========================================================== */
 const CONFIG = {
   // WhatsApp number: country code + number, digits only (no +, spaces or dashes)
-  whatsappNumber: "237670178126",
+  whatsappNumber: "447343053226",
   // Telegram username, without the @
-  telegramUsername: "davedrop",
+  telegramUsername: "Drop420s",
+  // Signal invite link (paste the full link exactly as given)
+  signalUrl: "https://signal.me/#eu/5ZEg1z0tovQCukvpBRnQyzTMhuUxQLPqKV92TZ63RQHFglXE0D5MrJojqKbmptR0",
   // Shown on the page
-  phoneDisplay: "+237 670 178 126",
+  phoneDisplay: "+44 7343 053226",
   hoursText: "Mon–Sat · 8:00–20:00 WAT",
   // Opening hours used for the "Online now" badge (24h clock, West Africa Time, UTC+1)
   openHour: 8,
@@ -24,6 +26,7 @@ const CONFIG = {
   // Fill links and text
   $("wa-link").href = `${waBase}?text=${encodeURIComponent("Hi Dave Drop! ")}`;
   $("tg-link").href = tgBase;
+  $("sg-link").href = CONFIG.signalUrl;
   $("wa-handle").textContent = CONFIG.phoneDisplay;
   $("tg-handle").textContent = `@${CONFIG.telegramUsername}`;
   $("info-phone").textContent = CONFIG.phoneDisplay;
