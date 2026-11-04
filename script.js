@@ -10,11 +10,6 @@ const CONFIG = {
   signalUrl: "https://signal.me/#eu/5ZEg1z0tovQCukvpBRnQyzTMhuUxQLPqKV92TZ63RQHFglXE0D5MrJojqKbmptR0",
   // Shown on the page
   phoneDisplay: "+44 7343 053226",
-  hoursText: "Mon–Sat · 8:00–20:00 WAT",
-  // Opening hours used for the "Online now" badge (24h clock, West Africa Time, UTC+1)
-  openHour: 8,
-  closeHour: 20,
-  openDays: [1, 2, 3, 4, 5, 6], // 0 = Sunday
 };
 
 (function () {
@@ -30,20 +25,7 @@ const CONFIG = {
   $("wa-handle").textContent = CONFIG.phoneDisplay;
   $("tg-handle").textContent = `@${CONFIG.telegramUsername}`;
   $("info-phone").textContent = CONFIG.phoneDisplay;
-  $("info-hours").textContent = CONFIG.hoursText;
   $("year").textContent = new Date().getFullYear();
-
-  // Online / away badge based on WAT (UTC+1)
-  const now = new Date();
-  const wat = new Date(now.getTime() + (now.getTimezoneOffset() + 60) * 60000);
-  const open =
-    CONFIG.openDays.includes(wat.getDay()) &&
-    wat.getHours() >= CONFIG.openHour &&
-    wat.getHours() < CONFIG.closeHour;
-  if (!open) {
-    $("status-text").textContent = "Away · we reply in the morning";
-    $("status-text").parentElement.classList.add("is-away");
-  }
 
   // Toast
   let toastTimer;
