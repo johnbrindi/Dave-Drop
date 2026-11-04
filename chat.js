@@ -143,6 +143,7 @@
     panel.hidden = !v;
     launch.setAttribute("aria-expanded", String(v));
     root.classList.toggle("lc-open", v);
+    document.documentElement.classList.toggle("lc-lock", v);
     if (v) {
       unread = 0; setBadge();
       state.seen = lastTs; save(state);

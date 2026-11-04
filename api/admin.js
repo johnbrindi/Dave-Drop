@@ -7,7 +7,7 @@
 //   GET  ?action=vapid                               -> push public key
 //   POST ?action=subscribe    { subscription }
 //   POST ?action=unsubscribe  { endpoint }
-import { send, body, clientIp, cleanText, rateLimit, safeEqual, signSession, verifySession, MAX_TEXT } from "../lib/util.js";
+import { send, body, clientIp, cleanText, safeEqual, signSession, verifySession, MAX_TEXT } from "../lib/util.js";
 import { redis, pipeline, toObject } from "../lib/redis.js";
 import { CONVS, convKey, msgsKey, isId, getConversation, addMessage, getMessages, publicConversation } from "../lib/chat.js";
 import { saveSubscription, removeSubscription } from "../lib/push.js";
@@ -19,11 +19,15 @@ export default async function handler(req, res) {
       if (!process.env.ADMIN_PASSWORD) {
         return send(res, 500, { error: "Admin password is not set on the server yet." });
       }
-      if (!(await rateLimit(`login:${clientIp(req)}`, 8, 900))) {
-        return send(res, 429, { error: "Too many attempts. Wait 15 minutes and try again." });
+      // Only wrong passwords count towards the lockout (8 per 15 minutes per connection).
+      const failKey = `rl:loginfail:${clientIp(req)}`;
+      if (Number(await redis("GET", failKey)) >= 8) {
+        return send(res, 429, { error: "Too many wrong attempts. Wait 15 minutes and try again." });
       }
       const { password } = body(req);
       if (typeof password !== "string" || !safeEqual(password, process.env.ADMIN_PASSWORD)) {
+        const fails = await redis("INCR", failKey);
+        if (fails === 1) await redis("EXPIRE", failKey, 900);
         return send(res, 401, { error: "Wrong password." });
       }
       return send(res, 200, { token: signSession() });

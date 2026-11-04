@@ -50,7 +50,7 @@
   display: grid;
   place-items: center;
 }
-.lc-open .lc-launch { transform: scale(0.9); opacity: 0; pointer-events: none; }
+.lc-open .lc-launch { display: none; }
 
 .lc-panel {
   position: fixed;
@@ -178,4 +178,13 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* Phones: chat fills the screen, page behind it doesn't scroll */
+@media (max-width: 560px) {
+  html.lc-lock, html.lc-lock body { overflow: hidden; }
+}
+/* Short screens (landscape phones, small laptops) */
+@media (max-height: 520px) and (min-width: 561px) {
+  .lc-panel { height: calc(100dvh - 24px); bottom: 12px; }
 }

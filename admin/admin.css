@@ -15,6 +15,9 @@
   color-scheme: dark;
 }
 
+/* Anything with the hidden attribute must stay hidden, whatever display it normally has. */
+[hidden] { display: none !important; }
+
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
 body {
